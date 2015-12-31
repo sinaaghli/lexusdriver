@@ -1,0 +1,11 @@
+project(lexusdriver)
+cmake_minimum_required(VERSION 2.8)
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall") #-DBOOST_NO_CXX11_NUMERIC_LIMITS")
+# Include local cmake modules directory.
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake_modules/")
+find_package(PCBUSB REQUIRED)
+include_directories(${PCBUSB_INCLUDE_DIR})
+target_link_libraries( ${PCBUSB_LIBRARY})
+message("lib is : ${PCBUSB_LIBRARY}")
+add_executable(${PROJECT_NAME} main.cpp)
+target_link_libraries(${PROJECT_NAME} ${PCBUSB_LIBRARY})
